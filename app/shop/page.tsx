@@ -25,7 +25,7 @@ const Results: React.FC<{ searchParams: PageProps<"/shop">["searchParams"] }> = 
           {result.total} {result.total === 1 ? "card" : "cards"}
         </p>
       </div>
-      <div className="grid gap-8 md:grid-cols-[240px_1fr] items-start">
+      <div className="grid gap-8 md:grid-cols-[240px_1fr] md:grid-rows-[auto_1fr] items-start">
         <ShopControls query={query} sets={sets} rarities={RARITIES} types={TYPES} total={result.total} />
         <div className="flex flex-col gap-6 min-w-0 md:col-start-2 md:row-start-1 md:row-span-2">
           <ActiveChips query={query} />

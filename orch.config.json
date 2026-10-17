@@ -12,17 +12,17 @@
   "maxConcurrent": 1,
   "board": {
     "owner": "j0ntz",
-    "projectNumber": 0,
-    "projectId": "",
-    "statusFieldId": "",
+    "projectNumber": 4,
+    "projectId": "PVT_kwHOD6Er384Bnciw",
+    "statusFieldId": "PVTSSF_lAHOD6Er384BnciwzhmBI8E",
     "statusOptions": {
-      "Backlog": "",
-      "Pending": "",
-      "Running": "",
-      "Verifying": "",
-      "Verified": "",
-      "Landing": "",
-      "Done": ""
+      "Backlog": "94b6c3bf",
+      "Pending": "f8a28276",
+      "Running": "1c745d2c",
+      "Verifying": "ebf9317e",
+      "Verified": "564376e3",
+      "Landing": "33f3e70e",
+      "Done": "a4a6ff52"
     }
   },
   "verify": {
@@ -33,12 +33,12 @@
     "mergeMethod": "squash"
   },
   "agent": {
-    "modelFieldId": "",
+    "modelFieldId": "PVTSSF_lAHOD6Er384BnciwzhmBI8g",
     "modelOptions": {
-      "Fable": "",
-      "Opus": "",
-      "Sonnet": "",
-      "Haiku": ""
+      "Fable": "3a2655f9",
+      "Opus": "9c92ce01",
+      "Sonnet": "1c288ee5",
+      "Haiku": "60b05451"
     },
     "models": {
       "_doc": "board label -> claude --model value; bare aliases resolve to the newest model of that class",
@@ -48,13 +48,13 @@
       "Haiku": "haiku"
     },
     "defaultModel": "fable",
-    "effortFieldId": "",
+    "effortFieldId": "PVTSSF_lAHOD6Er384BnciwzhmBI84",
     "effortOptions": {
-      "low": "",
-      "medium": "",
-      "high": "",
-      "xhigh": "",
-      "max": ""
+      "low": "e7558cbc",
+      "medium": "4db059c5",
+      "high": "33be502a",
+      "xhigh": "78db6593",
+      "max": "71fb8ff3"
     },
     "defaultEffort": "",
     "remoteControlStages": [

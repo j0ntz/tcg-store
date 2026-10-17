@@ -1000,6 +1000,14 @@ body[data-view="slides"] .note-group:not(.active) { display: none; }
    frames scroll sideways inside their column instead of running under the notes
    rail. Slides view already fits each frame to the stage. */
 body[data-view="grid"] .frame-grid { overflow-x: auto; padding-bottom: var(--sp-2); }
+/* Phones: the navigator row wraps instead of pushing prev/next off screen, and the
+   keyboard hint hides because phones have no arrow keys. */
+@media (max-width: 600px) {
+  body[data-view="slides"] .slide-nav { flex-wrap: wrap; row-gap: var(--sp-2); }
+  body[data-view="slides"] .slides-hint { display: none; }
+  body[data-view="slides"] .frame-grid { overflow: hidden; }
+  .board-meta { overflow-wrap: anywhere; }
+}
 
 </style>
 </head>
@@ -2073,7 +2081,8 @@ function fit() {
   if (!stage) return;
   const rail = view() === 'slides'
     ? f.closest('.board-section')?.querySelector('.note-rail') : null;
-  const railW = rail ? rail.offsetWidth : 0;
+  const railBeside = rail && rail.getBoundingClientRect().top < stage.getBoundingClientRect().bottom;
+  const railW = railBeside ? rail.offsetWidth : 0;
   const avail = stage.clientWidth - railW;
   f.style.removeProperty('--slide-scale');
   const s = Math.min(1, avail / f.offsetWidth, stage.clientHeight / f.offsetHeight);

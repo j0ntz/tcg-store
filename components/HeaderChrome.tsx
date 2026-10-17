@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HeaderSearch } from "./HeaderSearch";
 
 const NAV = [
   { href: "/shop", label: "Singles" },
@@ -9,11 +10,10 @@ const NAV = [
   { href: "/sets", label: "Sets" },
 ];
 
-// Checkout drops nav and search; the home page carries its own hero search instead of the header one.
+// Checkout drops nav and search. The phone search row lives in Header, below this bar.
 export const HeaderChrome: React.FC = () => {
   const pathname = usePathname();
   if (pathname === "/checkout") return <div className="flex-1" />;
-  const showSearch = pathname !== "/";
   return (
     <>
       <nav aria-label="Shop" className="flex items-center gap-4 text-sm font-medium">
@@ -29,14 +29,7 @@ export const HeaderChrome: React.FC = () => {
         ))}
       </nav>
       <div className="flex-1 flex justify-end">
-        {showSearch ? (
-          <form action="/shop" method="get" role="search" className="hidden sm:block w-full max-w-xs">
-            <label htmlFor="header-q" className="sr-only">
-              Search singles
-            </label>
-            <input id="header-q" name="q" type="search" className="input" placeholder="Search singles" autoComplete="off" />
-          </form>
-        ) : null}
+        <HeaderSearch id="header-q" className="hidden sm:block w-full max-w-xs" />
       </div>
     </>
   );

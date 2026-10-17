@@ -229,7 +229,7 @@ export const ShopControls: React.FC<Props> = (props) => {
         <button type="button" className="btn btn-secondary md:hidden" aria-expanded={open} onClick={() => setOpen(true)}>
           Filters
           {activeCount > 0 ? (
-            <span className="num inline-flex min-w-5 h-5 px-1 items-center justify-center rounded-full bg-accent-soft text-xs">
+            <span className="num inline-flex min-w-5 h-5 px-1 items-center justify-center rounded-full bg-brand text-brand-ink text-xs font-semibold">
               {activeCount}
             </span>
           ) : null}

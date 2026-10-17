@@ -63,7 +63,8 @@ components never branch on theme.
 | `--danger` | oklch(0.52 0.19 27) | oklch(0.74 0.16 27) | form errors only |
 
 The dominant color `--brand` carries the wordmark, links, primary buttons, the selected
-condition row, and the header's cart count. It is the only saturated color on most screens.
+condition row, the header's cart count, and the active-filter count on the shop page's Filters
+button. It is the only saturated color on most screens.
 
 The accent `--accent` appears in at most these five places and nowhere else:
 
@@ -124,7 +125,9 @@ worst tell and is banned.
 - **Notice**: `--surface-2` fill, `--radius-lg`, `--ink` text. Used for the shipping promise, the
   payments-not-connected notice, and empty states.
 - **Header**: the promise bar (`--text-xs`, `--surface-2`), then wordmark, nav, search, cart.
-  Home replaces the header search with the hero search. Checkout drops nav and search.
+  Below 640px the search moves to its own full-width row under the bar, so every page keeps a
+  text search at phone width. Home replaces the header search with the hero search. Checkout
+  drops nav and search.
 - **Footer**: nav, then the trademark notice at `--text-xs` in `--ink-2`.
 
 ## States

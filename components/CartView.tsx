@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { money } from "@/lib/format";
-import { FREE_SHIPPING_THRESHOLD } from "@/lib/store";
+import { FREE_SHIPPING_THRESHOLD, cheapestShipping } from "@/lib/store";
 import { QuantityInput } from "./QuantityInput";
 
 export const ShippingStatus: React.FC<{ subtotal: number }> = (props) => {
@@ -24,6 +24,14 @@ export const ShippingStatus: React.FC<{ subtotal: number }> = (props) => {
     </div>
   );
 };
+
+// The summary quotes the cheapest method checkout will actually offer for this subtotal, so the
+// $1.25 envelope only shows while it is available (under $20).
+function shippingLabel(subtotal: number): string {
+  if (subtotal >= FREE_SHIPPING_THRESHOLD) return "Free, tracked";
+  const cheapest = cheapestShipping(subtotal);
+  return cheapest == null ? "Calculated at checkout" : `From ${money(cheapest)}`;
+}
 
 export const CartView: React.FC = () => {
   const cart = useCart();
@@ -92,7 +100,7 @@ export const CartView: React.FC = () => {
           </div>
           <div className="flex justify-between py-2">
             <dt>Shipping</dt>
-            <dd className="num">{cart.subtotal >= FREE_SHIPPING_THRESHOLD ? "Free, tracked" : "From $1.25"}</dd>
+            <dd className="num">{shippingLabel(cart.subtotal)}</dd>
           </div>
           <div className="flex justify-between py-2">
             <dt>Tax</dt>

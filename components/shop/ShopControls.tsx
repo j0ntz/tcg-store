@@ -69,7 +69,9 @@ export const ShopControls: React.FC<Props> = (props) => {
 
   const activeCount = activeFilterCount(query);
 
-  const panel = (
+  // The panel is mounted twice on phones (desktop aside and the sheet), so each copy scopes its
+  // input ids to keep every id unique while the sheet is open.
+  const panel = (scope: string): React.ReactNode => (
     <form
       action="/shop"
       method="get"
@@ -158,11 +160,11 @@ export const ShopControls: React.FC<Props> = (props) => {
         <legend className="font-semibold mb-2">Price</legend>
         <div className="flex items-end gap-2">
           <div className="flex-1">
-            <label htmlFor={`${id}-min`} className="block text-xs text-ink-2 mb-1">
+            <label htmlFor={`${id}-${scope}-min`} className="block text-xs text-ink-2 mb-1">
               Min
             </label>
             <input
-              id={`${id}-min`}
+              id={`${id}-${scope}-min`}
               name="min"
               type="number"
               min={0}
@@ -175,11 +177,11 @@ export const ShopControls: React.FC<Props> = (props) => {
             />
           </div>
           <div className="flex-1">
-            <label htmlFor={`${id}-max`} className="block text-xs text-ink-2 mb-1">
+            <label htmlFor={`${id}-${scope}-max`} className="block text-xs text-ink-2 mb-1">
               Max
             </label>
             <input
-              id={`${id}-max`}
+              id={`${id}-${scope}-max`}
               name="max"
               type="number"
               min={0}
@@ -251,7 +253,7 @@ export const ShopControls: React.FC<Props> = (props) => {
       </div>
 
       <aside className="hidden md:block" aria-label="Filters">
-        {panel}
+        {panel("desktop")}
       </aside>
 
       {open ? (
@@ -264,7 +266,7 @@ export const ShopControls: React.FC<Props> = (props) => {
                 Close
               </button>
             </div>
-            <div className="overflow-y-auto px-4 py-4">{panel}</div>
+            <div className="overflow-y-auto px-4 py-4">{panel("sheet")}</div>
             <div className="px-4 py-3 border-t border-line bg-surface">
               <button type="button" className="btn btn-primary w-full num" onClick={() => setOpen(false)}>
                 Show {total} {total === 1 ? "result" : "results"}

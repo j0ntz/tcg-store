@@ -68,6 +68,16 @@ export const SHIPPING_METHODS: ShippingMethod[] = [
   },
 ];
 
+// The lowest price among the methods offered for a subtotal, or null when none applies.
+export function cheapestShipping(subtotal: number): number | null {
+  let min: number | null = null;
+  for (const method of SHIPPING_METHODS) {
+    const price = method.priceFor(subtotal);
+    if (price != null && (min == null || price < min)) min = price;
+  }
+  return min;
+}
+
 export function siteUrl(): URL {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit != null && explicit !== "") return new URL(explicit);

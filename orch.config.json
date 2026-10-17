@@ -1,0 +1,64 @@
+{
+  "_doc": "site-orch per-tenant config. Lives at the tenant repo root; register its path with ~/git/site-orch/register.sh add. Board ids are written by new-project.sh; edit by hand only when moving boards.",
+  "slug": "tcg-store",
+  "github": {
+    "owner": "j0ntz",
+    "repo": "tcg-store",
+    "branchPrefix": "jon/task-"
+  },
+  "repoPath": "~/git/tcg-store",
+  "worktreesRoot": "~/git/.tcg-store-worktrees",
+  "buildCommand": "npm run build",
+  "maxConcurrent": 1,
+  "board": {
+    "owner": "j0ntz",
+    "projectNumber": 0,
+    "projectId": "",
+    "statusFieldId": "",
+    "statusOptions": {
+      "Backlog": "",
+      "Pending": "",
+      "Running": "",
+      "Verifying": "",
+      "Verified": "",
+      "Landing": "",
+      "Done": ""
+    }
+  },
+  "verify": {
+    "_doc": "resolver = resolvers/<name>.sh in site-orch (vercel), or resolverCommand = a tenant script printing one live preview URL for <pr> <sha>.",
+    "resolver": "vercel"
+  },
+  "land": {
+    "mergeMethod": "squash"
+  },
+  "agent": {
+    "modelFieldId": "",
+    "modelOptions": {
+      "Fable": "",
+      "Opus": "",
+      "Sonnet": "",
+      "Haiku": ""
+    },
+    "models": {
+      "_doc": "board label -> claude --model value; bare aliases resolve to the newest model of that class",
+      "Fable": "fable",
+      "Opus": "opus",
+      "Sonnet": "sonnet",
+      "Haiku": "haiku"
+    },
+    "defaultModel": "fable",
+    "effortFieldId": "",
+    "effortOptions": {
+      "low": "",
+      "medium": "",
+      "high": "",
+      "xhigh": "",
+      "max": ""
+    },
+    "defaultEffort": "",
+    "remoteControlStages": [
+      "work"
+    ]
+  }
+}
